@@ -21,6 +21,7 @@ end
 
 class Lingen::Module
   attr_reader :system
+  attr_reader :validator
 
   def initialize(definition)
     @variables = definition[:variables].map!{ |v| Regexp.escape(v) } 
