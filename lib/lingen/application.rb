@@ -18,7 +18,8 @@ class Lingen::Application
         output_file = source_file + ".output"
       end
       begin
-        rule = eval File.read(source_file), source_file
+        proc = Proc.new() {}
+        rule = eval( File.read(source_file), proc.binding, source_file)
         if (rule[:seed])
           srand rule[:seed]
         else

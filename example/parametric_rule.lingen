@@ -10,6 +10,6 @@
                  "room(w,h) > door |0.1| -> floor(0,0)room(w,h)",
                  "door < room(w,h) |0.1| -> room(w,h)floor(0,0)",
                  ],
-  :iterations => 5
-  :output   => "parametric.example"
+  :iterations => 5,
+  :output   => "parametric.example",
 }

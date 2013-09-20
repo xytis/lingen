@@ -35,7 +35,7 @@ class Lingen::Module
     raise "Axiom contains unknown symbols" unless @validator.match(definition[:axiom])
     @axiom = definition[:axiom]
     @rules = []
-    definition[:rules].each { |r| @rules.push(Rule.new(r, @validator)) }
+    definition[:rules].each { |r| @rules.push(Lingen::Rule.new(r, @validator)) }
     raise "No rules specified!" if @rules.empty?
 
     reset()
