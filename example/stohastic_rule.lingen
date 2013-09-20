@@ -1,0 +1,12 @@
+#Stohastic rule example (based on plant rule)
+{
+  :variables => ["X", "F"],
+  :constants => ["+", "-", "[", "]"],
+  :axiom     => "X",
+  :rules     => ["X -> F-[[X]+X]+F[+FX]-X",
+                 "X |0.1| -> ",
+                 "F -> FF",
+                 "F |0.1| -> "],
+  :iterations => 5
+  :output   => "stohastic.example"
+}

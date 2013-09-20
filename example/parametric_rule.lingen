@@ -1,0 +1,15 @@
+#Parametric rule example
+{
+  :variables => ["room", "floor"],
+  :constants => ["door"],
+  :axiom     => "floor",
+  :rules     => [
+                 "floor(w,h) -> floor(w+1, h+1)",
+                 "floor(w,h) |0.1| -> room(w,h)",
+                 "floor(w,h) |0.05| -> room(w,h/2)doorroom(w,h/2)",
+                 "room(w,h) > door |0.1| -> floor(0,0)room(w,h)",
+                 "door < room(w,h) |0.1| -> room(w,h)floor(0,0)",
+                 ],
+  :iterations => 5
+  :output   => "parametric.example"
+}

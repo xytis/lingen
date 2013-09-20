@@ -1,0 +1,9 @@
+#Dragon rule from wikipedia
+{
+  :variables => ["X", "Y"],
+  :constants => ["F", "+", "-"],
+  :axiom     => "FX",
+  :rules     => ["X -> X+YF", "Y -> FX-Y"],
+  :iterations => 15
+  :output   => "dragon.example"
+}

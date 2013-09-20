@@ -1,0 +1,9 @@
+#Plant rule from wikipedia
+{
+  :variables => ["X", "F"],
+  :constants => ["+", "-", "[", "]"],
+  :axiom     => "X",
+  :rules     => ["X -> F-[[X]+X]+F[+FX]-X", "F -> FF"],
+  :iterations => 5
+  :output   => "plant.example"
+}
