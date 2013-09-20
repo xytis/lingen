@@ -20,6 +20,9 @@ pkg
 # seems like maybe this should be checked into git?
 Gemfile.lock
 
+# ignore example files
+*.example
+
 
 # Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore:
 #

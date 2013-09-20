@@ -4,6 +4,6 @@
   :constants => ["F", "+", "-"],
   :axiom     => "FX",
   :rules     => ["X -> X+YF", "Y -> FX-Y"],
-  :iterations => 15
-  :output   => "dragon.example"
+  :iterations => 15,
+  :output   => "dragon.example",
 }

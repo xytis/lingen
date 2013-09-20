@@ -58,7 +58,7 @@ class Lingen::Module
         |r|
         probability += r.probability if r.probability
         count += 1 unless r.probability
-      end 
+      end
       raise "Probability exceeds 1.0" if probability > 1.0
       if count > 0 then
         probability = 1.0 - probability
@@ -113,25 +113,25 @@ class Lingen::Module
 end
 
 class Lingen::Rule
-  @@rule_pattern = /^(:?\s*(?<left>\w+)\s*<\s*)?(?<name>\w+)(:?\((?<params>(?<=\().*?(?=\)))\))?(:?\s*>\s*(?<right>\w+))?(:?\s*\|?(?<probability>(?<=\|).+?(?=\|))?\|?\s*->\s*)(?<output>.*$)/
+  @@rule_pattern = /^(:?\s*(?<left>[^<>()\|\s]+)\s*<\s*)?(?<name>[^<>()\|\s]+)(:?\((?<params>(?<=\().*?(?=\)))\))?(:?\s*>\s*(?<right>[^<>()\|\s]+))?(:?\s*\|?(?<probability>(?<=\|).+?(?=\|))?\|?\s*->\s*)(?<output>.*$)/
 
     attr_accessor :probability
   attr_reader :seed, :left, :right, :params
 
   def initialize(pattern, validator)
     match = @@rule_pattern.match(pattern)
-    raise "Rule key resolution failed in #{pattern}" unless match and match[:name]
+    raise "Rule key resolution failed in \"#{pattern}\"" unless match and match[:name]
 
     opt_par = '(\([^\)]+?\))?'
     regex = "^"
     if match[:left] then
-      @left_regex = Regexp.new('^' + match[:left] + opt_par + '$') #expect a left before current.
+      @left_regex = Regexp.new('^' + Regexp.escape(match[:left]) + opt_par + '$') #expect a left before current.
       @left = match[:left]
-      raise "Left context is invalid in #{pattern}" unless validator.match(@left)
+      raise "Left context is invalid in \"#{pattern}\"" unless validator.match(@left)
     end
     @seed_regex = '^' + match[:name]
     @seed = match[:name]
-    raise "Rule seed is invalid in #{pattern}" unless validator.match(@seed)
+    raise "Rule seed is invalid in \"#{pattern}\"" unless validator.match(@seed)
     if match[:params] then
       @params = match[:params].split(',',-1)
       #print " extracted parameter names: ", @params, "\n"
@@ -139,9 +139,9 @@ class Lingen::Rule
     end
     @seed_regex = Regexp.new(@seed_regex + '$')
     if match[:right] then
-      @right_regex = Regexp.new('^' + match[:right] + opt_par + '$') #expect a right after current.
+      @right_regex = Regexp.new('^' + Regexp.escape(match[:right]) + opt_par + '$') #expect a right after current.
       @right = match[:right]
-      raise "Right context is invalid in #{pattern}" unless validator.match(@right)
+      raise "Right context is invalid in \"#{pattern}\"" unless validator.match(@right)
     end
 
     @probability = match[:probability].to_f if match[:probability]

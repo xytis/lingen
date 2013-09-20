@@ -28,14 +28,15 @@ class Lingen::Application
 
         lingen = Lingen::Module.new(rule)
         count = (rule[:iterations] or 5)
-        count.times { l.populate() }
+        count.times { lingen.populate() }
 
         output = (rule[:output] or (output_file))
-        File.open(output, 'w') { |file| file.write(l.system) }
+        File.open(output, 'w') { |file| file.write(lingen.system) }
 
       rescue Exception => e
         # Keep the portion of stack trace that belongs to the .lingen file
         backtrace = e.backtrace.grep(Regexp.new(File.expand_path(source_file)))
+        backtrace = ["While parsing #{source_file}"].concat backtrace
         raise e.class, e.message, backtrace
       end
     end

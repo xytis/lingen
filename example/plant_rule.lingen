@@ -4,6 +4,6 @@
   :constants => ["+", "-", "[", "]"],
   :axiom     => "X",
   :rules     => ["X -> F-[[X]+X]+F[+FX]-X", "F -> FF"],
-  :iterations => 5
-  :output   => "plant.example"
+  :iterations => 5,
+  :output   => "plant.example",
 }

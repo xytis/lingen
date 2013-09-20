@@ -8,6 +8,6 @@
                  "X -> F-[[X]+X]+F[+FX]-X",
                  "F -> FF",
                  ],
-  :iterations => 5
-  :output   => "context.example"
+  :iterations => 5,
+  :output   => "context.example",
 }

@@ -7,6 +7,6 @@
                  "X |0.1| -> ",
                  "F -> FF",
                  "F |0.1| -> "],
-  :iterations => 5
-  :output   => "stohastic.example"
+  :iterations => 5,
+  :output   => "stohastic.example",
 }
